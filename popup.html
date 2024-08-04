@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Gen-Aspire</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Lobster&family=Open+Sans:wght@300;400;600&display=swap');
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #A8E6CF 0%, #DCEDC1 50%, #FFD3B6 100%);
+            height: 100vh;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .container {
+            background: rgb(255, 241, 222); /* Lighter background color */
+            padding: 20px;
+            border-radius: 10px;
+            width: 600px;
+            height: 90vh; /* Increased height */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            position: relative;
+        }
+        .pages {
+            height: 100%;
+            overflow-y: scroll;
+            scroll-snap-type: y mandatory;
+            -webkit-overflow-scrolling: touch;
+        }
+        .page {
+            width: 100%;
+            height: 100%;
+            scroll-snap-align: start;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        input[type="text"], select {
+            display: block;
+            margin-top: 10px;
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            box-sizing: border-box;
+            font-family: 'Open Sans', sans-serif;
+        }
+        button {
+            cursor: pointer;
+            background: linear-gradient(135deg, #96dec4 0%, #ffcba9 100%);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: 'Lobster', cursive;
+            font-size: 20px;
+            margin-top: 30px;
+        }
+        .matrix {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            width: 100%;
+        }
+        .matrix div {
+            flex: 1;
+            text-align: center;
+        }
+        .slider {
+            width: 100%;
+            appearance: none;
+            height: 10px;
+            background: linear-gradient(to right, #A8E6CF, #FFD3B6);
+            outline: none;
+            opacity: 0.9;
+            transition: opacity 0.2s;
+        }
+        .slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+        .slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #4CAF50;
+            cursor: pointer;
+        }
+        .crafting-button {
+            font-family: 'Great Vibes', cursive;
+            font-size: 24px;
+            padding: 15px 30px;
+            position: relative;
+            overflow: hidden;
+            margin-top: 40px; /* Increased margin for more gap */
+        }
+        .crafting-button::before {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            top: 100%;
+            left: 0;
+            transition: top 0.3s ease;
+        }
+        .crafting-button:hover::before {
+            top: 0;
+        }
+        @keyframes writing {
+            0% { width: 0; }
+            100% { width: 100%; }
+        }
+        .crafting-button span {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            animation: writing 2s steps(30, end) forwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="pages">
+            <div id="page1" class="page">
+                <h1 style="font-family: 'Lobster', cursive;">Welcome to Gen-Aspire</h1>
+                <p>Your journey to personal growth starts here.</p>
+            </div>
+            <div id="page2" class="page">
+                <h1 style="font-family: 'Lobster', cursive;">What milestones do you want to hit?</h1>
+                <input type="text" id="milestones" required>
+            </div>
+            <div id="page3" class="page">
+                <h1 style="font-family: 'Lobster', cursive;">How soon do you want to see progress?</h1>
+                <select id="timeframe" required>
+                    <option value="1 day">1 Day</option>
+                    <option value="3 days">3 Days</option>
+                    <option value="1 week">1 Week</option>
+                    <option value="2 weeks">2 Weeks</option>
+                </select>
+            </div>
+            <div id="page4" class="page">
+                <h1 style="font-family: 'Lobster', cursive;">What helps you learn more effectively?</h1>
+                <div class="matrix">
+                    <div>Text</div>
+                    <input type="range" min="0" max="100" value="50" class="slider" id="learningPreference">
+                    <div>Visual</div>
+                </div>
+                <button id="submit-button" class="crafting-button"><span>Crafting Begins</span></button>
+            </div>
+        </div>
+        <div id="results" style="display:none;"></div>
+    </div>
+    <script src="popup.js"></script>
+</body>
+</html>
